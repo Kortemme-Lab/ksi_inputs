@@ -24,15 +24,15 @@ else
 fi
 
 # Relax the structure using the rosetta score function.
-$rosetta_bin/fixbb                      \
-    -in:file:fullatom                   \
-    -in:file:s $pdb.pdb                 \
-    -min_pack                           \
-    -use_input_sc false                 \
-    -packing:repack_only                \
-    -ignore_unrecognized_res            \
-    -ex1 -ex2 -extrachi_cutoff 0        \
-    -overwrite                          \
+$rosetta_bin/fixbb                              \
+    -in:file:fullatom                           \
+    -in:file:s $pdb.pdb                         \
+    -min_pack                                   \
+    -use_input_sc false                         \
+    -packing:repack_only                        \
+    -extra_res_fa ../../ligand/EQU.fa.params    \
+    -ex1 -ex2 -extrachi_cutoff 0                \
+    -overwrite                                  \
     -nstruct 1
 
 # Copy useful files into permanent locations.
@@ -40,4 +40,6 @@ cd ../..
 cp scratch/$pdb/$pdb.pdb download/$pdb.pdb
 cp scratch/$pdb/${pdb}_0001.pdb minpack/$pdb.pdb
 cp scratch/$pdb/score.sc minpack/$pdb.score
+gzip -c minpack/$pdb.pdb > minpack/$pdb.pdb.gz
 ln -sf minpack/$pdb.pdb
+ln -sf minpack/$pdb.pdb.gz
