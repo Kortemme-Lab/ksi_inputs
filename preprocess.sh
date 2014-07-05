@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+trap "" HUP
+
 if [ $# -ne 1 ]; then
     echo "Usage: ./preprocess.sh <pdb>"
     exit
@@ -8,7 +10,7 @@ else
     input=../../$1
 fi
 
-rosetta="../../../../../../../../.."
+rosetta=~/rosetta/ksi
 rosetta_bin="$rosetta/source/bin"
 
 rm -rf scratch/$pdb
@@ -24,15 +26,16 @@ else
 fi
 
 # Relax the structure using the rosetta score function.
-$rosetta_bin/fixbb                              \
-    -in:file:fullatom                           \
-    -in:file:s $pdb.pdb                         \
-    -min_pack                                   \
-    -use_input_sc false                         \
-    -packing:repack_only                        \
-    -extra_res_fa ../../ligand/EQU.fa.params    \
-    -ex1 -ex2 -extrachi_cutoff 0                \
-    -overwrite                                  \
+$rosetta_bin/fixbb                                          \
+    -in:file:fullatom                                       \
+    -in:file:s $pdb.pdb                                     \
+    -min_pack                                               \
+    -use_input_sc false                                     \
+    -packing:repack_only                                    \
+    -extra_res_fa "../../ligand/EQU.fa.params"              \
+    -symmetry_definition "../../dimer.symm"                 \
+    -ex1 -ex2 -extrachi_cutoff 0                            \
+    -overwrite                                              \
     -nstruct 1
 
 # Copy useful files into permanent locations.
