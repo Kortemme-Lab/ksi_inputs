@@ -1,3 +1,3 @@
 SEQUENCE: 
 SCORE: total_score dslf_fa13    fa_atr    fa_dun   fa_elec fa_intra_rep       fa_rep       fa_sol hbond_bb_sc hbond_lr_bb    hbond_sc hbond_sr_bb       omega     p_aa_pp pro_close      rama       ref description 
-SCORE:   21860.264     0.000  -979.806   174.413   -73.772        2.076    22278.504      534.998      -7.949     -64.436      -8.889     -54.795       2.964     -17.793    70.416    -8.756    13.089 wt-lig-dimer_0001
+SCORE:   21881.387     0.000  -979.031   175.534   -70.207        2.053    22292.179      535.652     -10.317     -64.425      -9.561     -54.784       2.957     -17.778    74.777    -8.752    13.089 1qjg-monomer_0001
