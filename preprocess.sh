@@ -2,12 +2,15 @@
 
 trap "" HUP
 
-if [ $# -ne 1 ]; then
+if [ $# -eq 1 ]; then
+    input=../../$1
+    pdb=$(basename ${1%.pdb})
+elif [ $# -eq 2 ]; then
+    input=../../$1
+    pdb=$2
+else
     echo "Usage: ./preprocess.sh <pdb>"
     exit
-else
-    pdb=$(basename ${1%.pdb})
-    input=../../$1
 fi
 
 rosetta=~/rosetta/ksi
@@ -33,10 +36,11 @@ $rosetta_bin/fixbb                                          \
     -use_input_sc false                                     \
     -packing:repack_only                                    \
     -extra_res_fa "../../ligand/EQU.fa.params"              \
-    -symmetry_definition "../../dimer.symm"                 \
     -ex1 -ex2 -extrachi_cutoff 0                            \
     -overwrite                                              \
     -nstruct 1
+
+    #-symmetry_definition "../../dimer.symm"                 \
 
 # Copy useful files into permanent locations.
 cd ../..
