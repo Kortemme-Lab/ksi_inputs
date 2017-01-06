@@ -2,6 +2,25 @@ NATRO
 START
 
 # Design positions
+# ================
+# I chose to design most of these positions (residues 34-45) because they're 
+# part of the active site loop.  Position 38 is the catalytic acid, of course.  
+#
+# I specifically excluded positions 35 and 37 because they are part of the beta 
+# sheet and are pointing towards the solvent, so I don't think they will be 
+# capable of forming any meaningful interactions with the loop.
+#
+# Unlike in previous designs, in this design I included residue 34.  The 
+# residue is relatively far from the active site, but its small and pointing 
+# towards the core, so I think it could contribute to the design by mutating to 
+# a larger residue and pushing the the whole loop back.
+#
+# I also included residues 199 and 200 from the opposite monomer.  These are 
+# the two residues on that monomer that most point towards the active site 
+# loop.  In previous designs, I'd also included residue 201, but I excluded it 
+# this time because it never made any specific designed interactions with the 
+# active site loop.  (Residued 199 and 200 didn't make specific interactions 
+# either, but I think they're in better position to make steric interactions.)
 
 34      A NOTAA HCW
 36      A NOTAA HCW
@@ -17,8 +36,13 @@ START
 200     B PIKAA VILFY
 
 # Repack positions
-# Every position with CB within 6A of the loop, excluding those being designed.
-# In pymol: 'select repack, (name cb and not design) within 6 of loop'
+# ================
+# Every position with CB within 6A of an atom being designed.  In pymol:
+# 'select repack, (name cb and not design) within 6 of loop'
+#
+# I decided to use a 6A repack shell instead of using Roland and Noah's 
+# clash-based repack shell because I don't want to run into frozen sidechains 
+# if the loop moves a bit.
 
 10      A NATAA
 13      A NATAA
