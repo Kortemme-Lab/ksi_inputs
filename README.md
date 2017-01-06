@@ -5,11 +5,6 @@ use in my project to rescue the D38E mutation via backbone remodeling.
 
 Contents
 --------
-The top level of the repository contains symlinks to minpacked PDB files and a 
-few assorted processing scripts.  I think it would be good to reorganize this 
-such that all the PDB files are in their own directory and all the scripts are 
-in the same directories as the files they operate on.
-
 * ``fasta/`` Protein sequence files for the PDB files contained in this 
   repository.
 
@@ -19,18 +14,19 @@ in the same directories as the files they operate on.
 * ``loops/`` Loop definitions.  These files indicate which residues will be 
   allowed to move in loop modeling simulations.
 
-* ``minpack/`` PDB files that have been minimized and repacked in the rosetta 
-  score function.  I'm not sure which version of the score function though 
-  (i.e. score12 or talaris2013), so this probably needs to be repeated with 
-  scripts that are more reproducible.
+* ``pymol/`` Pymol sessions of KSI for quick viewing.  Not meant to be part of 
+  the Pull into Place pipeline.
 
-* ``sessions/`` Pymol sessions of KSI for quick viewing.  Not meant to be part 
-  of the Pull into Place pipeline.
+* ``resfile/`` Rosetta "resfiles" specifying which positions to repack and 
+  design, and a script used to help generate resfiles.
 
-* ``symmetry/`` Parameters for simulating the KSI dimer in symmetry mode.  I 
-  never got this to work, and I now prefer to design KSI by focusing only on 
-  one active site and not using symmetry, but I'm keeping these files here for 
-  future reference.
+* ``restraints/`` A restraint file specifying the desired coordinates of the 
+  Asp/Glu carboxylate group and the parameters for the harmonic restraint.
 
-
+* ``structures/`` Monomeric, dimeric, apo, and holo structures of KSI that have 
+  been minimized and repacked in the rosetta score function.  I'm not sure 
+  which version of the score function though (i.e. score12 or talaris2013), so 
+  this probably needs to be repeated with scripts that are more reproducible.  
+  The dimeric holo structure ``wt_lig_dimer.pdb.gz`` is the one you should use 
+  unless you have a specific reason not to.
 
