@@ -27,7 +27,6 @@ if __name__ == '__main__':
             if current_residue != last_residue:
                 residue_id +=1
                 last_residue = current_residue
-
             
             line_out = line_in[:7]
             line_out += '{:4d}'.format(atom_id)
