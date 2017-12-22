@@ -1,0 +1,44 @@
+The `dimer.foldtree` fold tree was handwritten to smartly connect the two KSI 
+dimers and the ligand, to reduce unwanted movement and lever arm effects.
+   
+The `dimer_loops.foldtree` fold tree builds on `dimer.foldtree`, but adds 
+segments to prevent the whole protein from moving when the following two loops 
+are minimized:
+
+   LOOP  26  51  51 0 1
+   LOOP 198 203 203 0 1
+
+These fold trees are meant to accomplish the following things:
+
+- Connect the two chains at their closest point, to reduce lever arm effects if 
+  I ever do move the monomers relative to each other.
+
+- Anchor the ligand in place.
+
+- Prevent movements in either loop from propagating to the rest of the protein 
+  (for just `dimer_loops.foldtree`).
+
+I chose residue 100 as the root of the fold tree because it's directly across 
+from itself (residue 225 in the opposite monomer) in the dimer interface.  The 
+symmetry of it being near itself appealed to me, but to be honest it's not 
+really important.  You just needs two residues that are close together in the 
+dimer interface to reduce the lever arm effect.
+
+I connected the ligand directly to residue 100 to ensure that it won't move in 
+response to anything else in the protein.  This is important, because my 
+constraints file is based on the original coordinates of the ligand, so I 
+really don't want it to move.
+
+I decided to break the first loop at residue 33 because it's behind the 
+β-strand leading up to residue 38.  Since I think that β-strand will anchor 
+itself to the strand below it, I'm less worried about distortions in the loop 
+behind it having a material effect on things.  I initially thought about 
+breaking this loop at residue 38, but decided that I didn't want to risk 
+distorting the most important part of the loop.
+
+I decided to break the second loop at residue 202.  I don't think it really 
+matters, the loop is small and I can't really think of any reason why it'd be 
+better to break at one position versus another.  But residue 202 leaves the 
+turn itself intact, and is slightly further away from the active site loop that 
+residue 199, so that's why I chose it.
+
