@@ -8,6 +8,9 @@ are minimized:
    LOOP  26  51  51 0 1
    LOOP 198 203 203 0 1
 
+The `dimer_loops_2lig.foldtree` fold tree assumes that both monomers have a 
+ligand, and adds a jump to both.
+
 These fold trees are meant to accomplish the following things:
 
 - Connect the two chains at their closest point, to reduce lever arm effects if 
