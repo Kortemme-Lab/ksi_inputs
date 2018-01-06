@@ -1,0 +1,9 @@
+-extra_res_fa "EQU.fa.params"
+-extra_res_cen "EQU.cen.params"
+-lh:db_path "loophash_db"
+# 6 is the minimum because you need three pivots, at least 1 free residue, and 
+# one anchor on each side.  11 is the maximum (for rebuilding) because the loop 
+# is 9 res (36-44), and you need to add one residue as an anchor on each side.  
+-lh:loopsizes 6 7 8 9 10 11
+
+

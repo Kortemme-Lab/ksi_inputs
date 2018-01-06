@@ -3,12 +3,15 @@ START
 
 # Design positions
 # ================
-# I chose to design most of these positions (residues 34-45) because they're 
+# We chose to design most of these positions (residues 34-45) because they're 
 # part of the active site loop.  Position 38 is the catalytic acid, of course.  
 #
-# I specifically excluded positions 35 and 37 because they are part of the beta 
-# sheet and are pointing towards the solvent, so I don't think they will be 
-# capable of forming any meaningful interactions with the loop.
+# We specifically excluded positions 35 and 37 because they are part of the 
+# beta sheet and are pointing towards the solvent, so we don't think they will 
+# be capable of forming any meaningful interactions with the loop.  We also 
+# excluded position 45 because Rosetta insists on replacing it (an arginine) 
+# with a hydrophobic residue, which may be detrimental to protein or loop 
+# stability.  We are pursuing experimental evidence to support this.
 #
 # Unlike in previous designs, in this design I included residue 34.  The 
 # residue is relatively far from the active site, but its small and pointing 
@@ -42,10 +45,6 @@ START
 # I decided to use a 6A repack shell instead of using Roland and Noah's 
 # clash-based repack shell because I don't want to run into frozen sidechains 
 # if the loop moves a bit.
-# Note from Cody: Moved residue 45 from a design position to a repack position
-# because Rosetta insists on replacing it with a hydrophobic residue, which may 
-# be detrimental to protein or loop stability. Also pursuing experimental evidence
-# to support this. 
 
 10      A NATAA
 13      A NATAA
