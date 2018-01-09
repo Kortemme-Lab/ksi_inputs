@@ -3,13 +3,13 @@ START
 
 # Design positions
 # ================
-# We chose to design most of these positions (residues 34-44) because they're 
+# We chose to design most of these positions (residues 34-43) because they're 
 # part of the active site loop.  Position 38 is the catalytic acid, of course.  
 #
 # We specifically excluded positions 35 and 37 because they are part of the 
 # beta sheet and are pointing towards the solvent, so we don't think they will 
 # be capable of forming any meaningful interactions with the loop.  We also 
-# excluded position 45 because Rosetta insists on replacing it (an arginine) 
+# excluded position 44 because Rosetta insists on replacing it (an arginine) 
 # with a hydrophobic residue, which may be detrimental to protein or loop 
 # stability.  We are pursuing experimental evidence to support this.
 #
@@ -17,6 +17,11 @@ START
 # residue is relatively far from the active site, but its small and pointing 
 # towards the core, so we think it could contribute to the design by mutating 
 # to a larger residue and pushing the whole loop back.
+#
+# We also included residues 198--201, which comprise a turn on the opposite 
+# monomer.  Residues 198 and 199 may be close enough to the active site loop 
+# to influence its conformation, and the whole turn may be able to help fill in 
+# a cavity that opens up in the designs.
 #
 # We're using 'NOTAA WCHMFY' for the active site loop.  We chose these by 
 # looking at the frequency with which each amino acid appeared after the model 
@@ -26,6 +31,11 @@ START
 # any of WCHMYF.  TRQN are also all considered "surface loop" residues by layer 
 # design, while none of WCHMYF are (although 'NOTAA WCHMFY` does include AILV, 
 # which layer design doesn't consider "surface loop").
+#
+# We're using 'NOTAA CH' for the turn.  **This is meant to be used with 
+# ConcensusLoopDesign**, which will further limit the amino acids allowed at 
+# each positions based on the geometry of the turn!  'NOTAA CH' just gets rid 
+# of residues that are notoriously problematic (disulfides and pH dependence).
 
 34      A NOTAA WCHMFY
 36      A NOTAA WCHMFY
@@ -35,7 +45,10 @@ START
 41      A NOTAA WCHMFY
 42      A NOTAA WCHMFY
 43      A NOTAA WCHMFY
-44      A NOTAA WCHMFY
+198     B NOTAA CH
+199     B NOTAA CH
+200     B NOTAA CH
+201     B NOTAA CH
 
 # Repack positions
 # ================
@@ -46,19 +59,19 @@ START
 30 A NATAA
 35 A NATAA
 37 A NATAA
-45 A NATAA
-51 A NATAA
+44 A NATAA
+50 A NATAA
+53 A NATAA
 54 A NATAA
-55 A NATAA
-95 A NATAA
-100 A NATAA
-109 A NATAA
+94 A NATAA
+99 A NATAA
+108 A NATAA
+111 A NATAA
 112 A NATAA
 113 A NATAA
 114 A NATAA
 115 A NATAA
-116 A NATAA
-199 B NATAA
-202 B NATAA
-225 B NATAA
-251 Y NATAA
+126 B NATAA
+203 B NATAA
+224 B NATAA
+226 B NATAA

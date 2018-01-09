@@ -8,9 +8,9 @@ IFS=$'\n\t'
 rosetta=${1:-}
 repack_shell_app=$rosetta/source/bin/create_clash-based_repack_shell
 design_positions=${2:-}
-output_path='resfile'
+output_path='resfile_with_repack'
 
-if [[ -z $rosetta | -z $design_positions ]]; then
+if [[ -z $rosetta || -z $design_positions ]]; then
     echo "Usage: add_repack_positions.sh <path_to_rosetta> <design_positions>"
     exit 1
 fi
@@ -28,8 +28,17 @@ if [[ -e $output_path ]]; then
 fi
 
 cp $design_positions $output_path
+cat << EOF >> $output_path
+
+# Repack positions
+# ================
+# We used Roland and Noah's clash-based repack shell to determine which 
+# positions to repack.  This is a good method as long as the backbone won't 
+# move too much during design (otherwise you could run into frozen residues).
+EOF
+
 $repack_shell_app                                                           \
-    -in:file:s '../../structures/wt_lig_dimer.pdb'                          \
-    -in:file:extra_res_fa '../../ligand/EQU.fa.params'                      \
-    -in:file:extra_res_cen '../../ligand/EQU.cen.params'                    \
+    -in:file:s '../structures/wt_dimer.pdb'                                 \
+    -in:file:extra_res_fa '../ligand/EQU.fa.params'                         \
+    -in:file:extra_res_cen '../ligand/EQU.cen.params'                       \
     -packing:resfile $output_path
