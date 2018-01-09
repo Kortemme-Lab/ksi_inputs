@@ -3,105 +3,61 @@ START
 
 # Design positions
 # ================
-# I chose to design most of these positions (residues 34-45) because they're 
+# We chose to design most of these positions (residues 34-43) because they're 
 # part of the active site loop.  Position 38 is the catalytic acid, of course.  
 #
-# I specifically excluded positions 35 and 37 because they are part of the beta 
-# sheet and are pointing towards the solvent, so I don't think they will be 
-# capable of forming any meaningful interactions with the loop.
+# We specifically excluded positions 35 and 37 because they are part of the 
+# beta sheet and are pointing towards the solvent, so we don't think they will 
+# be capable of forming any meaningful interactions with the loop.  We also 
+# excluded position 44 because Rosetta insists on replacing it (an arginine) 
+# with a hydrophobic residue, which may be detrimental to protein or loop 
+# stability.  We are pursuing experimental evidence to support this.
 #
-# Unlike in previous designs, in this design I included residue 34.  The 
+# Unlike in previous designs, in this design we included residue 34.  The 
 # residue is relatively far from the active site, but its small and pointing 
-# towards the core, so I think it could contribute to the design by mutating to 
-# a larger residue and pushing the the whole loop back.
+# towards the core, so we think it could contribute to the design by mutating 
+# to a larger residue and pushing the whole loop back.
 #
-# I also included residues 199 and 200 from the opposite monomer.  These are 
-# the two residues on that monomer that most point towards the active site 
-# loop.  In previous designs, I'd also included residue 201, but I excluded it 
-# this time because it never made any specific designed interactions with the 
-# active site loop.  (Residued 199 and 200 didn't make specific interactions 
-# either, but I think they're in better position to make steric interactions.)
+# We're using 'NOTAA WCHMFY' for the active site loop.  We chose these by 
+# looking at the frequency with which each amino acid appeared after the model 
+# building step with lhKIC.  These were the bottom six (actually in order from 
+# most to least rare).  It was pretty clear where to make the cut.  The next 
+# most rare amino acids were TRQN..., and they were each ~3x more common than 
+# any of WCHMYF.  TRQN are also all considered "surface loop" residues by layer 
+# design, while none of WCHMYF are (although 'NOTAA WCHMFY` does include AILV, 
+# which layer design doesn't consider "surface loop").
 
-34      A NOTAA HCW
-36      A NOTAA HCW
+34      A NOTAA WCHMFY
+36      A NOTAA WCHMFY
 38      A PIKAA E
-39      A NOTAA CHW
-40      A NOTAA CHW
-41      A NOTAA CHW
-42      A NOTAA CHW
-43      A NOTAA CHW
-198     B PIKAA VILFY
-199     B PIKAA VILFY
+39      A NOTAA WCHMFY
+40      A NOTAA WCHMFY
+41      A NOTAA WCHMFY
+42      A NOTAA WCHMFY
+43      A NOTAA WCHMFY
 
 # Repack positions
 # ================
-# Every position with CB within 6A of an atom being designed.  In pymol:
-# 'select repack, (name cb and not design) within 6 of loop'
-#
-# I decided to use a 6A repack shell instead of using Roland and Noah's 
-# clash-based repack shell because I don't want to run into frozen sidechains 
-# if the loop moves a bit.
-# Note from Cody: Moved residue 45 from a design position to a repack position
-# because Rosetta insists on replacing it with a hydrophobic residue, which may 
-# be detrimental to protein or loop stability. Also pursuing experimental evidence
-# to support this. 
+# We used Roland and Noah's clash-based repack shell to determine which 
+# positions to repack.  This is a good method as long as the backbone won't 
+# move too much during design (otherwise you could run into frozen residues).
 
-10      A NATAA
-13      A NATAA
-14      A NATAA
-17      A NATAA
-18      A NATAA
-22      A NATAA
-23      A NATAA
-24      A NATAA
-26      A NATAA
-27      A NATAA
-28      A NATAA
-29      A NATAA
-30      A NATAA
-31      A NATAA
-32      A NATAA
-33      A NATAA
-35      A NATAA
-37      A NATAA
-44      A NATAA
-45      A NATAA
-47      A NATAA
-48      A NATAA
-49      A NATAA
-50      A NATAA
-51      A NATAA
-52      A NATAA
-53      A NATAA
-54      A NATAA
-56      A NATAA
-58      A NATAA
-103     A NATAA
-107     A NATAA
-108     A NATAA
-109     A NATAA
-110     A NATAA
-111     A NATAA
-112     A NATAA
-113     A NATAA
-114     A NATAA
-115     A NATAA
-118     A NATAA
-119     A NATAA
-126     B NATAA
-128     B NATAA
-131     B NATAA
-132     B NATAA
-135     B NATAA
-195     B NATAA
-196     B NATAA
-197     B NATAA
-200     B NATAA
-201     B NATAA
-202     B NATAA
-203     B NATAA
-204     B NATAA
-224     B NATAA
-225     B NATAA
-226     B NATAA
-227     B NATAA
+30 A NATAA
+35 A NATAA
+37 A NATAA
+44 A NATAA
+50 A NATAA
+53 A NATAA
+54 A NATAA
+94 A NATAA
+99 A NATAA
+108 A NATAA
+111 A NATAA
+112 A NATAA
+113 A NATAA
+114 A NATAA
+115 A NATAA
+198 B NATAA
+201 B NATAA
+224 B NATAA
+250 Y NATAA

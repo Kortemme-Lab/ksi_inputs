@@ -59,8 +59,10 @@ def fix_line(line):
     single string (which will be interpreted as one line) or a list of strings 
     (which will be interpreted as a [possibly empty] group of lines).
     """
-    match = re.match(r'(\d+)(\s+.*)', line)
+    if line.startswith('#'):
+        return fix_comment(line)
 
+    match = re.match(r'(\d+)(\s+.*)', line)
     if not match:
         return line
 
@@ -87,6 +89,18 @@ def fix_line(line):
             return []
         else:
             return change_resi(resi, resi - count, task)
+
+def fix_comment(line):
+    fix = lambda m: str(fix_number(int(m.group())))
+    return re.sub('\d+', fix, line)
+
+def fix_number(resi):
+    if resi <= 38:
+        return resi
+    if action == 'ins':
+        return resi + count
+    if action == 'del':
+        return resi - count
 
 def change_resi(old_resi, new_resi, task, verb='Renumbering'):
     if VERBOSE:
