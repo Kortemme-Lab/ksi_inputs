@@ -18,7 +18,7 @@
     <AddChainBreak name="break_loop" resnum="32" change_foldtree="no"/>
     <AddChainBreak name="break_turn" resnum="202" change_foldtree="no"/>
     <FastDesign name="fastdesign"
-        task_operations="cli,resfile,ex,abego"
+        task_operations="cli,resfile,ex,chi,abego"
         scorefxn="scorefxn_cst" >
       <MoveMap bb="no" chi="yes" jump="no">
          <Span begin="26"  end="51"  chi="yes" bb="yes"/>
