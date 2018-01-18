@@ -32,13 +32,18 @@ START
 # design, while none of WCHMYF are (although 'NOTAA WCHMFY` does include AILV, 
 # which layer design doesn't consider "surface loop").
 #
+# Similarly, we're using 'PIKAA LVIYF' for position 36.  These were the five 
+# most common amino acids for this position after the model building step with 
+# lhKIC.  They are also all the amino acids considered "core strand" by layer 
+# design, with the exception of W.
+#
 # We're using 'NOTAA CH' for the turn.  **This is meant to be used with 
 # ConcensusLoopDesign**, which will further limit the amino acids allowed at 
 # each positions based on the geometry of the turn!  'NOTAA CH' just gets rid 
 # of residues that are notoriously problematic (disulfides and pH dependence).
 
 34      A NOTAA WCHMFY
-36      A NOTAA WCHMFY
+36      A PIKAA LVIYF
 38      A PIKAA E
 39      A NOTAA WCHMFY
 40      A NOTAA WCHMFY
