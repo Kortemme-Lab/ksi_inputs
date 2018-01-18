@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 """ 
+Rewrite the given PDB file with residue numbers counting consecutively up from 
+1.
+
 Usage:
     ./renumber-pdb.py <path>
 """
