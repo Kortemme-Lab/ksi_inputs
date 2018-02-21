@@ -35,6 +35,9 @@ from subprocess import run, PIPE
 FIXERS = []
 
 class Delta:
+    """
+    The number of residues to insert or delete.
+    """
     site = 38
     
     def __init__(self, delta):
@@ -78,6 +81,19 @@ class Delta:
 
 
 class Fixer:
+    """
+    Base class for algorithms that update a particular kind of input file to 
+    the new loop length.
+
+    The `fix()` method is the public interface for converting files.  It takes 
+    the path to the original file, the path to the derivative file to create, 
+    and the number of residues to insert or delete.  
+    
+    By default, `fix()` iterates through the input file line-by-line and calls 
+    `fix_line()` to determine how to update each line.  `fix_line()` can either 
+    return a string (to replace a line) or a list of strings (to insert or
+    remove lines).
+    """
     paths = []
 
     def __init_subclass__(cls):
@@ -122,6 +138,19 @@ class Fixer:
 
 
 class PatternFixer(Fixer):
+    """
+    Search files for any of the regular expressions given in `patterns`, then 
+    fix any numbers in any of the capturing groups in any of the matches.
+    
+    Put another way, `patterns` should be a list of regular expressions that 
+    match parts of the file that may need to be updated.  Only the parts of the 
+    pattern that are contained in capturing groups (i.e. parentheses) will 
+    actually be updated, so it's possible to have patterns that encompass 
+    numbers that both should and shouldn't be updated.  The text in the 
+    capturing groups is searched for numbers, so it's completely fine to have 
+    groups that encompass a mix of text and numbers and/or multiple distinct 
+    numbers to update.
+    """
     patterns = []
     keep_one_space = False
 
@@ -155,6 +184,14 @@ class PatternFixer(Fixer):
 
 
 class PdbFixer(Fixer):
+    """
+    Insert or remove residues from PDB files as necessary.
+
+    The algorithm is to iterate through to file residue by residue (a little 
+    complicated because each residue spans multiple lines) and to either delete 
+    or duplicate the residues after the site indicated by the delta, which for 
+    KSI is 38.
+    """
     paths = '*.pdb', '*.pdb.gz'
 
     class IdCounter:
@@ -334,6 +371,9 @@ class XmlFixer(PatternFixer):
 
 class RestraintsFixer(PatternFixer):
     paths = 'restraints', '*.restraints'
+
+    # The ".+?" bits match atom names (e.g. CA), and the "(\s*\d+)" bits match 
+    # the residue indices to update.
     patterns = [
             r'^CoordinateConstraint .+? (\s*\d+)',
             r'^AtomPair .+? (\s*\d+) .+? (\s*\d+)',
