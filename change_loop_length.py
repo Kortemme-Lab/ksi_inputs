@@ -38,9 +38,9 @@ class Delta:
     """
     The number of residues to insert or delete.
     """
-    site = 38
     
-    def __init__(self, delta):
+    def __init__(self, site, delta):
+        self.site = site
         self.name = delta
         self.action = delta[:3]
         if self.action not in ('ins', 'del'):
@@ -152,6 +152,7 @@ class PatternFixer(Fixer):
     numbers to update.
     """
     patterns = []
+    keep_alignment = True
     keep_one_space = False
 
     def fix_line(self, delta, line):
@@ -176,6 +177,7 @@ class PatternFixer(Fixer):
                     fixed_content = fix_all_numbers(
                             delta,
                             content,
+                            self.keep_alignment,
                             self.keep_one_space,
                     )
                     line = before + fixed_content + after
@@ -324,20 +326,23 @@ class ResfileFixer(Fixer):
         task = match.group(3) + '\n'
 
         if delta.is_insertion:
-            if resi <= 38:
+            if resi <= delta.site:
                 return line
-            elif resi == 39:
+            elif resi == delta.site + 1:
                 return [line] + [
-                        self.add_task(39, 39 + j + 1, task, space)
+                        self.add_task(
+                            delta.site + 1,
+                            delta.site + j + 2,
+                            task, space)
                         for j in range(delta.count)
                 ]
             else:
                 return self.fix_task(delta, resi, task, space)
 
         if delta.is_deletion:
-            if resi <= 38:
+            if resi <= delta.site:
                 return line
-            elif resi - delta.count <= 38:
+            elif resi - delta.count <= delta.site:
                 return self.remove_task(resi)
             else:
                 return self.fix_task(delta, resi, task, space)
@@ -404,6 +409,13 @@ class PymolFixer(PatternFixer):
     # residues by index in pymol.
     patterns = r'resi (.*?)[\'",]',
 
+class TextFixer(Fixer):
+    paths = '*.txt', '*.rst', '*.md'
+
+    def fix_line(self, delta, line):
+        return fix_all_numbers(delta, line)
+
+
 class CopyUnchanged(Fixer):
     paths = '*'
 
@@ -433,16 +445,19 @@ def fix_file(src, dest, delta):
     from subprocess import run, PIPE
     from textwrap import indent
 
+    print('Source:', src)
+    print('Destination:', dest)
+
     fixer = fixer_from_path(src)
+
+    print('Fixer:', fixer)
+    print()
+
     fixer.fix(src, dest, delta)
 
     cmd = 'diff', src, dest, '--color=always'
     diff = run(cmd, stdout=PIPE).stdout.decode()
 
-    print('Source:', src)
-    print('Destination:', dest)
-    print('Fixer:', fixer)
-    print()
     print(indent(diff, '  '))
     print()
 
@@ -457,17 +472,20 @@ def fixer_from_name(name):
         if name.lower in fixer.__name__:
             return fixer()
 
-def fix_all_numbers(delta, line, keep_one_space=False):
+def fix_all_numbers(delta, line, keep_alignment=False, keep_one_space=True):
 
     def fix(match): #
         old_resi_str = match.group()
         old_resi = int(old_resi_str)
         new_resi = delta.fix_resi(old_resi)
         new_resi_str = f'{new_resi:{len(old_resi_str)}d}'
+        space = match.group(1)
+
+        if not keep_alignment:
+            return space + str(new_resi)
 
         # If there is leading space, don't get rid of it completely, since that 
         # could change the meaning of the line.
-        space = match.group(1)
         if keep_one_space and space and new_resi_str[0] != ' ':
             new_resi_str = ' ' + new_resi_str
 
@@ -486,7 +504,7 @@ def mkdir_and_open(path, mode='w'):
 if __name__ == '__main__':
     args = docopt.docopt(__doc__)
     path = Path(args['<path>'])
-    delta = Delta(args['<delta>'])
+    delta = Delta(40, args['<delta>'])
 
     if path.is_dir():
         shutil.rmtree(delta.fix_dir(path), ignore_errors=True)
