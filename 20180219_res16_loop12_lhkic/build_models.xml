@@ -1,0 +1,23 @@
+<ROSETTASCRIPTS>
+
+  <xi:include href="shared_defs.xml"/>
+
+  <MOVERS>
+    <LoopModeler name="modeler"
+      config="loophash_kic"
+      scorefxn_fa="scorefxn_cst"
+      task_operations="cli,resfile,ex,chi"
+      loops_file="%%loop_file%%"
+      fast="%%fast%%"
+    />
+  </MOVERS>
+
+  <PROTOCOLS>
+    <!-- Constraints read from command line -->
+    <Add mover_name="modeler"/>
+    <Add mover_name="writer"/>
+  </PROTOCOLS>
+
+  <OUTPUT scorefxn="scorefxn"/>
+
+</ROSETTASCRIPTS>

@@ -1,0 +1,30 @@
+  <xi:include href="filters.xml"/>
+
+  <SCOREFXNS>
+    <ScoreFunction name="scorefxn" weights="%%wts_file%%"/>
+    <ScoreFunction name="scorefxn_cst" weights="%%wts_file%%">
+      <Reweight scoretype="coordinate_constraint" weight="1.0"/>
+      <Reweight scoretype="atom_pair_constraint" weight="1.0"/>
+      <Reweight scoretype="angle_constraint" weight="1.0"/>
+      <Reweight scoretype="dihedral_constraint" weight="1.0"/>
+      <Reweight scoretype="res_type_constraint" weight="1.0"/>
+    </ScoreFunction>
+  </SCOREFXNS>
+
+  <RESIDUE_SELECTORS>
+   <Chain name="chA" chains="A"/>
+   <Index name="E38" resnums="38"/>
+ </RESIDUE_SELECTORS>
+
+  <TASKOPERATIONS>
+    <InitializeFromCommandline name="cli"/>
+    <ReadResfile name="resfile"/>
+    <ExtraRotamersGeneric name="ex" ex1="yes" ex2="yes" extrachi_cutoff="0"/>
+    <LimitAromaChi2 name="chi" include_trp="yes"/>
+  </TASKOPERATIONS>
+
+  <MOVERS>
+    <FavorNativeResidue name="nativebonus" bonus="1.5"/>
+    <ConstraintSetMover name="cst" cst_fa_file="%%cst_file%%"/>
+    <WriteFiltersToPose name="writer" prefix="EXTRA_SCORE_"/>
+  </MOVERS>

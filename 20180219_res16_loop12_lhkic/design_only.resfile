@@ -1,0 +1,54 @@
+NATRO
+START
+
+# Design positions
+# ================
+# This resfile simply encompasses the whole active site loop, the beta 
+# strand leading up to it, and the turn on the opposite monomer.  Compared to 
+# our previous resfile, this one allows two more positions to design on each 
+# side of the active site loop, which we hope will lead to design models that 
+# better satisfy the constraints:
+#
+# Positions 35+37: Previously we excluded these positions because they're 
+# pointing into solvent and clearly not affecting the active site loop.  
+# Despite that, we now think that the more important thing is to create a more 
+# diverse set of backbones in the initial model building step.  Allowing 
+# loophash to design the whole loop should help accomplish that.  We'll use 
+# LayerDesign in the next step to make sure we still end up with greasy 
+# residues on the inside and polar one on the outside.
+#
+# Positions 45+46: Design the active site loop up to G47.  We don't think it 
+# would be wise to include G47 in the design, since it seems to be responsible 
+# for breaking the α-helix at position 48.  Previously we stopped at position 
+# 44 in hopes of keeping its salt-bridge with E53, but Rosetta usually got rid 
+# of that interaction anyways.
+# 
+# We'll be using LayerDesign and ConsensusLoopDesign to restrict which residues 
+# can go where, so the only thing we're specifying here is `NOTAA CH`.  We 
+# never want cysteine because it can mess up the global fold by forming 
+# unexpected disulfides, and we never want histidine because it's behavior can 
+# be pH dependent.
+
+34      A NOTAA CH
+35      A NOTAA CH
+36      A NOTAA CH
+37      A NOTAA CH
+38      A PIKAA E
+39      A NOTAA CH
+40      A NOTAA CH
+41      A NOTAA CH
+42      A NOTAA CH
+43      A NOTAA CH
+44      A NOTAA CH
+45      A NOTAA CH
+46      A NOTAA CH
+199     B NOTAA CH
+200     B NOTAA CH
+201     B NOTAA CH
+202     B NOTAA CH
+
+# Repack positions
+# ================
+# We used Roland and Noah's clash-based repack shell to determine which 
+# positions to repack.  This is a good method as long as the backbone won't 
+# move too much during design (otherwise you could run into frozen residues).
