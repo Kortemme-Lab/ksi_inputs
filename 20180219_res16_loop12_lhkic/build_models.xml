@@ -2,12 +2,18 @@
 
   <xi:include href="shared_defs.xml"/>
 
+  <TASKOPERATIONS>
+    <RestrictToRepacking name="repackonly"/>
+  </TASKOPERATIONS>
+
   <MOVERS>
     <LoopModeler name="modeler"
       config="loophash_kic"
       scorefxn_fa="scorefxn_cst"
-      task_operations="cli,resfile,ex,chi"
+      task_operations="cli,resfile,ex,chi,repackonly"
       loops_file="%%loop_file%%"
+      loophash_perturb_sequence="yes"
+      loophash_seqposes_no_mutate="38"
       fast="%%fast%%"
     />
   </MOVERS>
