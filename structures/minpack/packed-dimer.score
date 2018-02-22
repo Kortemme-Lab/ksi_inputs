@@ -1,3 +1,0 @@
-SEQUENCE: 
-SCORE: total_score dslf_fa13    fa_atr    fa_dun   fa_elec fa_intra_rep       fa_rep       fa_sol hbond_bb_sc hbond_lr_bb    hbond_sc hbond_sr_bb       omega     p_aa_pp pro_close      rama       ref description 
-SCORE:    -251.392     0.000  -915.306   226.184   -89.473        2.201      164.781      492.545     -12.985     -64.776     -16.064     -56.197       3.192     -19.228    30.904   -10.260    13.089 packed-dimer_0001
