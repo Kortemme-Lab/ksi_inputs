@@ -4,36 +4,53 @@ set -euo pipefail
 # Expect $ROSETTA and $ROSETTA_BUILD to be set as environment variables.
 
 BIN=$ROSETTA/source/bin
-INPUTS=$(realpath $(dirname $(realpath $0))/..)
+STRUCTS=$(pwd)
+LIGAND=$(readlink -f $STRUCTS/../ligand_2018)
 
-function relax_1qjg () {
-    mkdir -p 1qjg_clean_relax
-    $BIN/rosetta_scripts.$ROSETTA_BUILD                                     \
-        -in:file:s $INPUTS/structures/1qjg_clean.pdb                        \
-        -in:file:extra_res_fa $INPUTS/ligand/EQU.fa.params                  \
-        -parser:protocol $INPUTS/structures/relax_1qjg.xml                  \
-        -out:suffix _relax/$1                                               \
+function header() {
+    echo "Host: $(hostname)"
+    echo "Date: $(date)"
+    echo "Directory: $(pwd)"
+    echo "Command: SGE_TASK_ID=$SGE_TASK_ID $0 $@"
+}
+
+function relax_ksi () {
+    header
+    $BIN/relax.$ROSETTA_BUILD                                               \
+        -in:file:s $STRUCTS/$1                                              \
+        -out:suffix _relax/$2                                               \
         -out:no_nstruct_label                                               \
         -out:overwrite                                                      \
         -relax:constrain_relax_to_start_coords                              \
         -relax:coord_constrain_sidechains                                   \
-        -relax:ramp_constraints true                                        \
+        -relax:ramp_constraints false                                       \
         -packing:ex1                                                        \
         -packing:ex2                                                        \
         -packing:use_input_sc                                               \
         -packing:flip_HNQ                                                   \
-        -packing:no_optH false                                              \
-        | tee 1qjg_clean_relax/$1.stdout
+        -packing:no_optH false                                              #
 }
 
-function score_1qjg_models () {
+function repack_ksi () {
+    header
+    $BIN/fixbb.$ROSETTA_BUILD                                               \
+        -in:file:s $STRUCTS/$1                                              \
+        -out:suffix _relax_repack/$2                                        \
+        -out:no_nstruct_label                                               \
+        -out:overwrite                                                      \
+        -packing:resfile repack_only                                        \
+        -packing:ex1                                                        \
+        -packing:ex2                                                        \
+        -packing:use_input_sc                                               #
+}
+
+function score_ksi_models () {
     $BIN/score.$ROSETTA_BUILD                                               \
-        -database $ROSETTA/database                                         \
         -in:file:s                                                          \
-            $INPUTS/structures/1qjg_clean.pdb                               \
-            $INPUTS/structures/1qjg_clean_relax/*.pdb                       \
-        -in:file:native $INPUTS/structures/1qjg_clean.pdb                   \
-        -extra_res_fa $INPUTS/ligand/EQU.fa.params                          \
+            $STRUCTS/1qjg_clean.pdb                                         \
+            $STRUCTS/$1/*.pdb                                               \
+        -in:file:native $STRUCTS/1qjg_clean.pdb                             \
+        -in:file:extra_res_fa $LIGAND/EQU.fa.params                         \
         -out:file:scorefile_format json                                     #
 
     python2 $ROSETTA/source/tools/scorefile.py score.sc | tee score.tab

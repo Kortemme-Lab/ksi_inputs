@@ -3,7 +3,7 @@ set -euo pipefail
 
 #$ -S /bin/bash
 #$ -cwd
-#$ -o 1qjg_clean_relax
+#$ -o 1qjg_clean_relax_repack
 #$ -j y
 #$ -l mem_free=1G
 #$ -l arch=linux-x64
@@ -12,6 +12,6 @@ set -euo pipefail
 #$ -t 1-100
 
 source rosetta.sh
-relax_ksi 1qjg_clean.pdb $SGE_TASK_ID
+repack_ksi 1qjg_clean_relax.pdb $SGE_TASK_ID
 
 
