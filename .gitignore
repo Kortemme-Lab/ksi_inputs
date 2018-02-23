@@ -1,3 +1,5 @@
 !*.pdb.gz
 /*_del?
 /*_ins?
+.*.sw*
+__pycache__

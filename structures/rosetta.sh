@@ -45,13 +45,11 @@ function repack_ksi () {
 }
 
 function score_ksi_models () {
+    rm $1/score.tab
     $BIN/score.$ROSETTA_BUILD                                               \
         -in:file:s                                                          \
             $STRUCTS/1qjg_clean.pdb                                         \
             $STRUCTS/$1/*.pdb                                               \
         -in:file:native $STRUCTS/1qjg_clean.pdb                             \
-        -in:file:extra_res_fa $LIGAND/EQU.fa.params                         \
-        -out:file:scorefile_format json                                     #
-
-    python2 $ROSETTA/source/tools/scorefile.py score.sc | tee score.tab
+        -out:file:scorefile $1/score.tab                                    #
 }
