@@ -1,0 +1,241 @@
+Host: id29
+Date: Fri Feb 23 14:21:54 PST 2018
+Directory: /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures
+Command: SGE_TASK_ID=84 /var/spool/sge/qb3cell/id29/job_scripts/88213 
+core.init: Rosetta version: 2018.07.post.dev+324.master.ac6e702 ac6e7020dbc5a246199b6c0d8db71031f26078ff git@github.com:RosettaCommons/main.git 2018-02-22T11:24:29
+core.init: command: /netapp/home/kale/rosetta/master/source/bin/relax.linuxgccrelease -in:file:s /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb -out:suffix _relax/84 -out:no_nstruct_label -out:overwrite -relax:constrain_relax_to_start_coords -relax:coord_constrain_sidechains -relax:ramp_constraints false -packing:ex1 -packing:ex2 -packing:use_input_sc -packing:flip_HNQ -packing:no_optH false
+core.init: 'RNG device' seed mode, using '/dev/urandom', seed=-1008717531 seed_offset=0 real_seed=-1008717531
+core.init.random: RandomGenerator:init: Normal mode, seed=-1008717531 RG_type=mt19937
+core.init: Resolved executable path: /netapp/home/kale/research/software/tools/rosetta/master/source/build/src/release/linux/2.6/64/x86/gcc/4.4/default/relax.default.linuxgccrelease
+core.init: Looking for database based on location of executable: /netapp/home/kale/research/software/tools/rosetta/master/database/
+core.scoring.ScoreFunctionFactory: SCOREFUNCTION: ref2015
+core.scoring.etable: Starting energy table calculation
+core.scoring.etable: smooth_etable: changing atr/rep split to bottom of energy well
+core.scoring.etable: smooth_etable: spline smoothing lj etables (maxdis = 6)
+core.scoring.etable: smooth_etable: spline smoothing solvation etables (max_dis = 6)
+core.scoring.etable: Finished calculating energy tables.
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/HBPoly1D.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/HBFadeIntervals.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/HBEval.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/DonStrength.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/AccStrength.csv
+core.chemical.GlobalResidueTypeSet: Finished initializing fa_standard residue type set.  Created 603 residue types
+core.chemical.GlobalResidueTypeSet: Total time to initialize 2 seconds.
+basic.io.database: Database file opened: scoring/score_functions/rama/fd/all.ramaProb
+basic.io.database: Database file opened: scoring/score_functions/rama/fd/prepro.ramaProb
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.all.txt
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.gly.txt
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.pro.txt
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.valile.txt
+basic.io.database: Database file opened: scoring/score_functions/P_AA_pp/P_AA
+basic.io.database: Database file opened: scoring/score_functions/P_AA_pp/P_AA_n
+core.scoring.P_AA: shapovalov_lib::shap_p_aa_pp_smooth_level of 1( aka low_smooth ) got activated.
+basic.io.database: Database file opened: scoring/score_functions/P_AA_pp/shapovalov/10deg/kappa131/a20.prop
+protocols.relax.FastRelax: ================== Using default script - no constraint ramping ==================
+protocols.jd2.PDBJobInputter: Instantiate PDBJobInputter
+protocols.jd2.PDBJobInputter: PDBJobInputter::fill_jobs
+protocols.jd2.PDBJobInputter: pushed /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb nstruct index 1
+protocols.evaluation.ChiWellRmsdEvaluatorCreator: Evaluation Creator active ... 
+protocols.jd2.PDBJobInputter: PDBJobInputter::pose_from_job
+protocols.jd2.PDBJobInputter: filling pose from PDB /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb
+core.import_pose.import_pose: File '/netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb' automatically determined to be of type PDB
+core.chemical.GlobalResidueTypeSet: Loading 'EQU' from the PDB components dictionary for residue type 'pdb_EQU'
+core.io.pose_from_sfr.PoseFromSFRBuilder: [ WARNING ] discarding 3 atoms at position 1 in file /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb. Best match rsd_type:  MET:NtermProteinFull
+core.io.pose_from_sfr.PoseFromSFRBuilder: [ WARNING ] discarding 1 atoms at position 6 in file /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb. Best match rsd_type:  HIS
+core.io.pose_from_sfr.PoseFromSFRBuilder: [ WARNING ] discarding 1 atoms at position 99 in file /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb. Best match rsd_type:  ASP
+core.io.pose_from_sfr.PoseFromSFRBuilder: [ WARNING ] discarding 1 atoms at position 100 in file /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb. Best match rsd_type:  HIS
+core.io.pose_from_sfr.PoseFromSFRBuilder: [ WARNING ] discarding 1 atoms at position 122 in file /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb. Best match rsd_type:  HIS
+core.io.pose_from_sfr.PoseFromSFRBuilder: [ WARNING ] discarding 3 atoms at position 126 in file /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb. Best match rsd_type:  MET:NtermProteinFull
+core.io.pose_from_sfr.PoseFromSFRBuilder: [ WARNING ] discarding 1 atoms at position 131 in file /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb. Best match rsd_type:  HIS
+core.io.pose_from_sfr.PoseFromSFRBuilder: [ WARNING ] discarding 1 atoms at position 224 in file /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb. Best match rsd_type:  ASP
+core.io.pose_from_sfr.PoseFromSFRBuilder: [ WARNING ] discarding 1 atoms at position 225 in file /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb. Best match rsd_type:  HIS
+core.io.pose_from_sfr.PoseFromSFRBuilder: [ WARNING ] discarding 1 atoms at position 247 in file /netapp/home/kale/research/projects/rescue_ksi_d38e/inputs/structures/1qjg_clean.pdb. Best match rsd_type:  HIS
+core.scoring.ScoreFunctionFactory: SCOREFUNCTION: ref2015
+basic.io.database: Database file opened: scoring/score_functions/elec_cp_reps.dat
+core.scoring.elec.util: Read 40 countpair representative atoms
+core.pack.dunbrack.RotamerLibrary: shapovalov_lib_fixes_enable option is true.
+core.pack.dunbrack.RotamerLibrary: shapovalov_lib::shap_dun10_smooth_level of 1( aka lowest_smooth ) got activated.
+core.pack.dunbrack.RotamerLibrary: Binary rotamer library selected: /netapp/home/kale/research/software/tools/rosetta/master/database/rotamer/shapovalov/StpDwn_0-0-0/Dunbrack10.lib.bin
+core.pack.dunbrack.RotamerLibrary: Using Dunbrack library binary file '/netapp/home/kale/research/software/tools/rosetta/master/database/rotamer/shapovalov/StpDwn_0-0-0/Dunbrack10.lib.bin'.
+core.pack.dunbrack.RotamerLibrary: Dunbrack 2010 library took 0.37 seconds to load from binary
+core.pack.task: Packer task: initialize from command line() 
+core.pack.pack_rotamers: built 674 rotamers at 251 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 946640 bytes
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=     5.053 chino=  2 position:    3 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=     1.809 chino=  2 position:    8 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: heavyatom chi angle change: chidev=   180.000 chino=  3 position:   12 GLN GLN
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=     4.602 chino=  3 position:   14 TYR TYR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    40.117 chino=  2 position:   35 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    17.928 chino=  2 position:   42 SER SER
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    82.102 chino=  2 position:   46 SER SER
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=     5.303 chino=  2 position:   48 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=     2.292 chino=  3 position:   55 TYR TYR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=   134.255 chino=  2 position:   58 SER SER
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    38.355 chino=  2 position:   68 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=     9.279 chino=  2 position:   85 SER SER
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=     1.268 chino=  3 position:   88 TYR TYR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    17.234 chino=  2 position:   93 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: heavyatom chi angle change: chidev=   180.000 chino=  2 position:  104 ASN ASN
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    83.982 chino=  2 position:  111 SER SER
+core.io.pdb.file_data: [ WARNING ] OPT-H: heavyatom chi angle change: chidev=   180.000 chino=  2 position:  122 HIS HIS
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    83.408 chino=  2 position:  128 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    15.507 chino=  2 position:  133 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: heavyatom chi angle change: chidev=   180.000 chino=  3 position:  137 GLN GLN
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=     5.756 chino=  3 position:  139 TYR TYR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=   128.715 chino=  2 position:  160 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    24.184 chino=  2 position:  167 SER SER
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    76.345 chino=  2 position:  171 SER SER
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=     3.442 chino=  2 position:  173 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    12.288 chino=  3 position:  180 TYR TYR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=   139.319 chino=  2 position:  183 SER SER
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=   147.018 chino=  2 position:  193 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    54.560 chino=  2 position:  210 SER SER
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=     4.291 chino=  3 position:  213 TYR TYR
+core.io.pdb.file_data: [ WARNING ] OPT-H: heavyatom chi angle change: chidev=   180.000 chino=  3 position:  214 GLN GLN
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=   143.355 chino=  2 position:  218 THR THR
+core.io.pdb.file_data: [ WARNING ] OPT-H: heavyatom chi angle change: chidev=   180.000 chino=  2 position:  229 ASN ASN
+core.io.pdb.file_data: [ WARNING ] OPT-H: proton chi angle change: chidev=    84.464 chino=  2 position:  236 SER SER
+core.io.pdb.file_data: [ WARNING ] OPT-H: heavyatom chi angle change: chidev=   180.000 chino=  2 position:  247 HIS HIS
+protocols.relax.FastRelax: CMD: repeat  -65.4875  0  0  0.55
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 9629 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 42379664 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -747.829  0.0976175  0.0976175  0.011
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 8362 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 31081456 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -682.165  0.093628  0.093628  0.1375
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 8106 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 28754984 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -615.649  0.0940447  0.0940447  0.3025
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 7789 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 26747504 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -534.682  0.0982117  0.0982117  0.55
+protocols.relax.FastRelax: MRP: 0  -534.682  -534.682  0.0982117  0.0982117  
+protocols.relax.FastRelax: CMD: accept_to_best  -534.682  0.0982117  0.0982117  0.55
+protocols.relax.FastRelax: CMD: endrepeat  -534.682  0.0982117  0.0982117  0.55
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 9648 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 42287392 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -749.743  0.0985337  0.0985337  0.011
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 8431 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 31420460 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -682.495  0.0946773  0.0946773  0.1375
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 8098 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 28700952 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -617.9  0.094521  0.094521  0.3025
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 7808 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 26930012 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -537.465  0.0979666  0.0979666  0.55
+protocols.relax.FastRelax: MRP: 1  -537.465  -537.465  0.0979666  0.0979666  
+protocols.relax.FastRelax: CMD: accept_to_best  -537.465  0.0979666  0.0979666  0.55
+protocols.relax.FastRelax: CMD: endrepeat  -537.465  0.0979666  0.0979666  0.55
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 9638 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 42290512 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -750.568  0.0987142  0.0987142  0.011
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 8455 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 31479896 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -684.284  0.0944858  0.0944858  0.1375
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 8150 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 29001148 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -617.623  0.0952643  0.0952643  0.3025
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 7820 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 26871764 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -538.061  0.098643  0.098643  0.55
+protocols.relax.FastRelax: MRP: 2  -538.061  -538.061  0.098643  0.098643  
+protocols.relax.FastRelax: CMD: accept_to_best  -538.061  0.098643  0.098643  0.55
+protocols.relax.FastRelax: CMD: endrepeat  -538.061  0.098643  0.098643  0.55
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 9627 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 42209684 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -750.587  0.0986649  0.0986649  0.011
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 8452 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 31453812 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -683.974  0.0943856  0.0943856  0.1375
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 8141 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 28989172 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -616.125  0.0950715  0.0950715  0.3025
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 7831 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 26967068 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -538.093  0.0985825  0.0985825  0.55
+protocols.relax.FastRelax: MRP: 3  -538.093  -538.093  0.0985825  0.0985825  
+protocols.relax.FastRelax: CMD: accept_to_best  -538.093  0.0985825  0.0985825  0.55
+protocols.relax.FastRelax: CMD: endrepeat  -538.093  0.0985825  0.0985825  0.55
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 9637 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 42319572 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -750.588  0.0991422  0.0991422  0.011
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 8456 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 31465320 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -684.189  0.094345  0.094345  0.1375
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 8156 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 29148912 bytes
+protocols.relax.FastRelax: CMD: ramp_repack_min  -617.407  0.0953312  0.0953312  0.3025
+core.pack.task: Packer task: initialize from command line() 
+core.pack.rotamer_set.RotamerSet_: Using simple Rotamer generation logic for pdb_EQU
+core.pack.pack_rotamers: built 7822 rotamers at 252 positions.
+core.pack.interaction_graph.interaction_graph_factory: Instantiating DensePDInteractionGraph
+core.pack.interaction_graph.interaction_graph_factory: IG: 26872804 bytes
+core.optimization.LineMinimizer: [ ERROR ] Inaccurate G! step= 7.45058e-09 Deriv= -0.13631 Finite Diff= 0.172638
+protocols.relax.FastRelax: CMD: ramp_repack_min  -538.105  0.0987078  0.0987078  0.55
+protocols.relax.FastRelax: MRP: 4  -538.105  -538.105  0.0987078  0.0987078  
+protocols.relax.FastRelax: CMD: accept_to_best  -538.105  0.0987078  0.0987078  0.55
+protocols.relax.FastRelax: CMD: endrepeat  -538.105  0.0987078  0.0987078  0.55
+protocols::checkpoint: Deleting checkpoints of FastRelax
+protocols.jd2.JobDistributor: 1qjg_clean_relax/84 reported success in 1186 seconds
+protocols.jd2.JobDistributor: no more batches to process... 
+protocols.jd2.JobDistributor: 1 jobs considered, 1 jobs attempted in 1187 seconds
+protocols::checkpoint: Deleting checkpoints of FastRelax

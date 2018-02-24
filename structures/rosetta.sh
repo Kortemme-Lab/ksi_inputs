@@ -35,7 +35,7 @@ function repack_ksi () {
     header
     $BIN/fixbb.$ROSETTA_BUILD                                               \
         -in:file:s $STRUCTS/$1                                              \
-        -out:suffix _relax_repack/$2                                        \
+        -out:suffix _repack/$2                                              \
         -out:no_nstruct_label                                               \
         -out:overwrite                                                      \
         -packing:resfile repack_only                                        \
@@ -45,11 +45,12 @@ function repack_ksi () {
 }
 
 function score_ksi_models () {
-    rm $1/score.tab
+    rm -f $1/score.tab
     $BIN/score.$ROSETTA_BUILD                                               \
         -in:file:s                                                          \
-            $STRUCTS/1qjg_clean.pdb                                         \
+            $STRUCTS/*.pdb                                                  \
             $STRUCTS/$1/*.pdb                                               \
         -in:file:native $STRUCTS/1qjg_clean.pdb                             \
-        -out:file:scorefile $1/score.tab                                    #
+        -out:file:scorefile $1/score.tab                                    \
+        -out:file:scorefile_format json                                     #
 }
