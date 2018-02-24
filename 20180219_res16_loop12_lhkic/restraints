@@ -1,4 +1,4 @@
-CoordinateConstraint OE1 38 CA 1 17.895 73.085 10.634 HARMONIC 0.0 1.0
-CoordinateConstraint OE2 38 CA 1 19.471 74.505 10.507 HARMONIC 0.0 1.0 
-CoordinateConstraint CG  38 CA 1 20.090 72.256 10.794 HARMONIC 0.0 0.707
-CoordinateConstraint CZ  54 CA 1 20.881 72.640  7.400 HARMONIC 0.0 1.0
+CoordinateConstraint CG  38 CA 1 12.159  64.031 -28.170 HARMONIC 0.0 1.0
+CoordinateConstraint OE1 38 CA 1 10.881  63.345 -30.090 HARMONIC 0.0 1.0
+CoordinateConstraint OE2 38 CA 1 11.759  65.409 -30.106 HARMONIC 0.0 1.0
+CoordinateConstraint CZ  54 CA 1 15.196  64.334 -29.952 HARMONIC 0.0 1.0
