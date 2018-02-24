@@ -1,5 +1,10 @@
 `flags`
-   Tell rosetta where to find the ligand parameters.
+   In previous iterations of this protocol, we had to provide rosetta with 
+   ligand parameters via the `-extra_res_fa` flag.  However, this no longer 
+   seems necessary.  On top of that, there seemed to be a problem with the 
+   params files that would cause the ligand atoms to be in the wrong place in 
+   the PDB produced at the end of a rosetta run.  I tried regenerating the 
+   ligand parameters, but that didn't help.
 
 `foldtree`
    This fold tree was handwritten to to accomplish the following things:
@@ -65,12 +70,6 @@
 
    I don't know why I decided to make the restraint on CG weaker than the 
    others.  Probably I was thinking that it was less important, but 
-
-`EQU.cen.params`
-   Centroid-mode ligand parameters.
-
-`EQU.fa.params`
-   Fullatom-mode ligand parameters.
 
 `input.pdb`
    Not sure how the input was prepared...
