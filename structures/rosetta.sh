@@ -38,7 +38,7 @@ function repack_ksi () {
         -out:suffix _repack/$2                                              \
         -out:no_nstruct_label                                               \
         -out:overwrite                                                      \
-        -packing:resfile repack_only                                        \
+        -packing:resfile repack_and_e38                                     \
         -packing:ex1                                                        \
         -packing:ex2                                                        \
         -packing:use_input_sc                                               #
