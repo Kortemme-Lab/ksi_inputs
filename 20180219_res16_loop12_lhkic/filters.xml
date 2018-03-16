@@ -7,5 +7,16 @@
   <HbondsToResidue name="# HBonds to Glu38 [+]" scorefxn="scorefxn_cst" partners="0" energy_cutoff="-0.5" backbone="true" bb_bb="true" sidechain="true" residue="38" from_other_chains="true" from_same_chain="true" />
   <OversaturatedHbondAcceptorFilter name="# Oversaturated HBonds [-]" scorefxn="scorefxn_cst" max_allowed_oversaturated="0" hbond_energy_cutoff="-0.5" consider_mainchain_only="false" />
   <RepackWithoutLigand name="Delta Score Without Ligand [-]"  scorefxn="scorefxn_cst" target_res="all_repacked" rms_threshold="100"/>
-  <FragmentScoreFilter name="[[-]]Higher 9-Residue Crmsd" scoretype="FragmentCrmsd" sort_by="FragmentCrmsd" threshold="9999" direction="-" start_res="%%loop_start%%" end_res="%%loop_end%%" compute="maximum" outputs_folder="%%outputs_folder%%" outputs_name="%%design_number%%" csblast="/netapp/home/krivacic/software/csblast-2.2.3_linux64"  blast_pgp="/netapp/home/klabqb3backrub/tools/blast-2.2.26/bin/blastpgp" placeholder_seqs="/netapp/home/xingjiepan/Databases/BLAST/placeholder/placeholder_seqs" psipred="/netapp/home/xingjiepan/Softwares/parametric_scaffold_design/dependencies/dependencies/psipred/runpsipred_single" sparks-x="/netapp/home/klabqb3backrub/tools/sparks-x" sparks-x_query="/netapp/home/klabqb3backrub/tools/sparks-x/bin/buildinp_query.sh" frags_scoring_config="standard.wghts" n_frags="200" n_candidates="1000" fragment_size="9"  vall_path="%%vall_path%%" />
+  <FragmentScoreFilter name="[[-]]Higher 9-Residue Crmsd"
+      scoretype="FragmentCrmsd" sort_by="FragmentCrmsd" threshold="9999"
+      direction="-" start_res="%%loop_start%%" end_res="%%loop_end%%"
+      compute="maximum" outputs_folder="%%outputs_folder%%"
+      outputs_name="%%design_number%%"
+      csblast="/netapp/home/krivacic/software/csblast-2.2.3_linux64"
+      blast_pgp="/netapp/home/klabqb3backrub/tools/blast-2.2.26/bin/blastpgp"
+      placeholder_seqs="/netapp/home/xingjiepan/Databases/BLAST/placeholder/placeholder_seqs"
+      psipred="/netapp/home/xingjiepan/Softwares/parametric_scaffold_design/dependencies/dependencies/psipred/runpsipred_single"
+      sparks-x="/netapp/home/klabqb3backrub/tools/sparks-x"
+      sparks-x_query="/netapp/home/klabqb3backrub/tools/sparks-x/bin/buildinp_query.sh"
+      frags_scoring_config="%%frags_scoring_config%%" n_frags="200" n_candidates="1000" fragment_size="9"  vall_path="%%vall_path%%" />
 </FILTERS>
