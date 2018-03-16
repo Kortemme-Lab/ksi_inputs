@@ -1,0 +1,71 @@
+NATRO
+START
+
+# Design Positions
+# ===============
+# We chose to design the entire loop (for both loops), minus E38, and use 
+# layered design. This is more philosophically in line with how loophash works, 
+# since it gives sequence and structure information at the same time.
+
+34      A NOTAA CH
+35      A NOTAA CH
+36      A NOTAA CH
+37      A NOTAA CH
+38      A PIKAA E
+39      A NOTAA CH
+40      A NOTAA CH
+41      A NOTAA CH
+42      A NOTAA CH
+43      A NOTAA CH
+44      A NOTAA CH
+45      A NOTAA CH
+46      A NOTAA CH
+
+199     B NOTAA CH
+200     B NOTAA CH
+201     B NOTAA CH
+202     B NOTAA CH
+
+# The following repack positions were chosen by the clash-based repack
+# shell creator. 
+
+14 A NATAA
+30 A NATAA
+50 A NATAA
+51 A NATAA
+54 A NATAA
+55 A NATAA
+95 A NATAA
+109 A NATAA
+111 A NATAA
+112 A NATAA
+113 A NATAA
+114 A NATAA
+115 A NATAA
+116 A NATAA
+121 A NATAA
+127 B NATAA
+204 B NATAA
+225 B NATAA
+227 B NATAA
+# 251 X NATAA
+
+# The following repack positions were added after visual inspection of
+# clash-based repack shell.
+
+110 A NATAA
+128 B NATAA
+126 B NATAA
+117 A NATAA
+118 A NATAA
+58 A NATAA
+57 A NATAA
+53 A NATAA
+52 A NATAA
+56 A NATAA
+108 A NATAA
+13 A NATAA
+25 A NATAA
+10 A NATAA
+17 A NATAA
+228 B NATAA
