@@ -49,6 +49,45 @@ START
 
 # Repack positions
 # ================
-# We used Roland and Noah's clash-based repack shell to determine which 
-# positions to repack.  This is a good method as long as the backbone won't 
-# move too much during design (otherwise you could run into frozen residues).
+# The following repack positions were chosen by the clash-based repack
+# shell creator (excluding the ligand). 
+
+14      A NATAA
+30      A NATAA
+50      A NATAA
+51      A NATAA
+54      A NATAA
+55      A NATAA
+95      A NATAA
+109     A NATAA
+111     A NATAA
+112     A NATAA
+113     A NATAA
+114     A NATAA
+115     A NATAA
+116     A NATAA
+121     A NATAA
+127     B NATAA
+204     B NATAA
+225     B NATAA
+227     B NATAA
+
+# The following repack positions were added after visual inspection of
+# clash-based repack shell.
+
+110     A NATAA
+128     B NATAA
+126     B NATAA
+117     A NATAA
+118     A NATAA
+58      A NATAA
+57      A NATAA
+53      A NATAA
+52      A NATAA
+56      A NATAA
+108     A NATAA
+13      A NATAA
+25      A NATAA
+10      A NATAA
+17      A NATAA
+228     B NATAA
