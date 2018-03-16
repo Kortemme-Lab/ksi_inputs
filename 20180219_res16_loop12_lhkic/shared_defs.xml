@@ -12,15 +12,15 @@
   </SCOREFXNS>
 
   <RESIDUE_SELECTORS>
-   <Chain name="chA" chains="A"/>
-   <Index name="E38" resnums="38"/>
- </RESIDUE_SELECTORS>
+    <Chain name="chA" chains="A"/>
+    <Index name="E38" resnums="38"/>
+  </RESIDUE_SELECTORS>
 
   <TASKOPERATIONS>
-    <InitializeFromCommandline name="cli"/>
     <ReadResfile name="resfile"/>
     <ExtraRotamersGeneric name="ex" ex1="yes" ex2="yes" extrachi_cutoff="0"/>
-    <LimitAromaChi2 name="chi" include_trp="yes"/>
+    <LimitAromaChi2 name="aro" include_trp="yes"/>
+    <IncludeCurrent name="curr"/>
   </TASKOPERATIONS>
 
   <MOVERS>

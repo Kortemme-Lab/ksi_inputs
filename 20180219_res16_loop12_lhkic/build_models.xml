@@ -10,7 +10,7 @@
     <LoopModeler name="modeler"
       config="loophash_kic"
       scorefxn_fa="scorefxn_cst"
-      task_operations="cli,resfile,ex,chi,repackonly"
+      task_operations="resfile,repackonly,ex,aro,curr"
       loops_file="%%loop_file%%"
       loophash_perturb_sequence="yes"
       loophash_seqposes_no_mutate="38"

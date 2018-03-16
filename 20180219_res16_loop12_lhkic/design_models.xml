@@ -3,13 +3,30 @@
   <xi:include href="shared_defs.xml"/>
 
   <RESIDUE_SELECTORS>
+    <Index name="loop" resnums="34-46"/>
     <Index name="turn" resnums="200-201"/>
+    <Layer name="surface" select_core="false" select_boundary="false" select_surface="true" use_sidechain_neighbors="true"/>
+    <Layer name="boundary" select_core="false" select_boundary="true" select_surface="false" use_sidechain_neighbors="true"/>
+    <Layer name="core" select_core="true" select_boundary="false" select_surface="false" use_sidechain_neighbors="true"/>
+    <SecondaryStructure name="helix" overlap="0" minH="3" include_terminal_loops="false" use_dssp="true" ss="H" />
+    <SecondaryStructure name="sheet" overlap="0" minE="3" include_terminal_loops="false" use_dssp="true" ss="E" />
+    <SecondaryStructure name="loop" overlap="0" minH="3" minE="3" include_terminal_loops="true" use_dssp="true" ss="L" />
   </RESIDUE_SELECTORS>
 
   <TASKOPERATIONS>
     <ConsensusLoopDesign name="abego"
         residue_selector="turn"
         include_adjacent_residues="no" />
+    <DesignRestrictions name="layer">
+      <Action selector_logic="loop AND surface AND ( helix OR sheet )" aas="DEHKNQRST"/>
+      <Action selector_logic="loop AND surface AND loop"               aas="DEGHKNPQRST"/>
+      <Action selector_logic="loop AND boundary AND helix"             aas="ADEIKLMNQRSTVWY"/>
+      <Action selector_logic="loop AND boundary AND sheet"             aas="DEFIKLNQRSTVWY"/>
+      <Action selector_logic="loop AND boundary AND loop"              aas="ADEFGIKLMNPQRSTVWY"/>
+      <Action selector_logic="loop AND core AND helix"                 aas="AFILMVWY"/>
+      <Action selector_logic="loop AND core AND sheet"                 aas="FILVWY"/>
+      <Action selector_logic="loop AND core AND loop"                  aas="AFILMPVWY"/>
+    </DesignRestrictions>
   </TASKOPERATIONS>
 
   <MOVERS>
@@ -18,7 +35,7 @@
     <AddChainBreak name="break_loop" resnum="40" change_foldtree="no"/>
     <AddChainBreak name="break_turn" resnum="200" change_foldtree="no"/>
     <FastDesign name="fastdesign"
-        task_operations="cli,resfile,ex,chi,abego"
+        task_operations="resfile,layer,abego,ex,aro,curr"
         scorefxn="scorefxn_cst" >
       <MoveMap bb="no" chi="yes" jump="no">
          <Span begin="26"  end="51"  chi="yes" bb="yes"/>
