@@ -18,5 +18,5 @@
       psipred="/netapp/home/xingjiepan/Softwares/parametric_scaffold_design/dependencies/dependencies/psipred/runpsipred_single"
       sparks-x="/netapp/home/klabqb3backrub/tools/sparks-x"
       sparks-x_query="/netapp/home/klabqb3backrub/tools/sparks-x/bin/buildinp_query.sh"
-      frags_scoring_config="%%frags_scoring_config%%" n_frags="200" n_candidates="1000" fragment_size="9"  vall_path="%%vall_path%%" />
+      frags_scoring_config="%%fragment_weights%%" n_frags="200" n_candidates="1000" fragment_size="9"  vall_path="%%vall_path%%" />
 </FILTERS>
