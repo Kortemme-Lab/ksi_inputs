@@ -31,6 +31,7 @@ from pathlib import Path
 from fnmatch import fnmatch
 from contextlib import contextmanager
 from subprocess import run, PIPE
+from textwrap import indent
 
 FIXERS = []
 
@@ -136,6 +137,11 @@ class Fixer:
         """
         raise NotImplementedError
 
+    def diff(self, src, dest):
+        cmd = 'diff', src, dest, '--color=always'
+        diff = run(cmd, stdout=PIPE).stdout.decode()
+        print(indent(diff, '  '))
+
 
 class PatternFixer(Fixer):
     """
@@ -219,8 +225,8 @@ class PdbFixer(Fixer):
             # ever called more than once on the same residue.  It's actually 
             # not hard to think of input that would trigger this condition 
             # (e.g. literally any non-atom line in the middle of a residue), 
-            # but such input should be very rare and handling it would make 
-            # this code a lot more complex.
+            # but such input should not occur (fingers crossed) and handling it 
+            # would make this code a lot more complex.
             assert not self.fix_called
             self.fix_called = True
 
@@ -245,7 +251,7 @@ class PdbFixer(Fixer):
         def renumber_residues(self, residues):
             fixed_lines = []
 
-            for residue in residues:
+            for residue in filter(lambda x: x, residues):
                 for atom in residue:
                     fixed_atom = atom[:7]
                     fixed_atom += '{:4d}'.format(self.id_counter.atom)
@@ -270,8 +276,8 @@ class PdbFixer(Fixer):
         else:
             open = builtins.open
 
-        with open(src, 'rt') as file:
-            lines = file.readlines()
+        with open(src, 'rt') as file:  # 'rt' forces the file to be opened
+            lines = file.readlines()   # in text mode.
 
         # Insert or remove residues from the file as necessary, then renumber 
         # all the atoms to account for the change in length.
@@ -443,7 +449,6 @@ def fix_directory(dir, delta):
 
 def fix_file(src, dest, delta):
     from subprocess import run, PIPE
-    from textwrap import indent
 
     print('Source:', src)
     print('Destination:', dest)
@@ -454,11 +459,8 @@ def fix_file(src, dest, delta):
     print()
 
     fixer.fix(src, dest, delta)
+    fixer.diff(src, dest)
 
-    cmd = 'diff', src, dest, '--color=always'
-    diff = run(cmd, stdout=PIPE).stdout.decode()
-
-    print(indent(diff, '  '))
     print()
 
 def fixer_from_path(path):
