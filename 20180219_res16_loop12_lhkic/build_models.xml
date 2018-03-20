@@ -1,6 +1,6 @@
 <ROSETTASCRIPTS>
 
-  <xi:include href="shared_defs.xml"/>
+  {% include "shared_defs.xml" %}
 
   <TASKOPERATIONS>
     <RestrictToRepacking name="repackonly"/>
@@ -11,10 +11,10 @@
       config="loophash_kic"
       scorefxn_fa="scorefxn_cst"
       task_operations="resfile,repackonly,ex,aro,curr"
-      loops_file="%%loop_file%%"
+      loops_file="{{ w.loops_path }}"
       loophash_perturb_sequence="yes"
       loophash_seqposes_no_mutate="38"
-      fast="%%fast%%"
+      fast="{{ 'yes' if test_run else 'no' }}"
     />
   </MOVERS>
 
