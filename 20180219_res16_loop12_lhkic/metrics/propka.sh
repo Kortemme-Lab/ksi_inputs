@@ -11,28 +11,28 @@ set -euo pipefail
 #
 #       $ scl enable python27 'python setup.py install --user'
 
-# Unzip the structure for PROPKA, and remove any ligands or other Rosetta 
-# garbage.
+# Unzip and aggressively clean the structure.
 pdb=$(mktemp '/tmp/propka_input_XXXXXX.pdb')
 trap "rm -f $pdb" EXIT
 zcat $1 | grep '^ATOM' > $pdb
 
-PKA_WT=6.19   # From running PROPKA on PDB ID: 8cho
+PKA_WT=6.19  # From running PROPKA on PDB ID: 8cho
 PKA_MODEL=$(
     # Run the pKa predictor on the given structure.
-    scl enable python27 "propka31 $pdb" |
-    # Copy the output to stderr so we can see it.
+    scl enable python27 "~/.local/bin/propka31 $pdb" |
+    # Mirror the output to stderr so we can see it.
     tee /dev/stderr |
-    # Find the prediction for E38.  Look in the summary section, because the 
-    # first section sometimes has a trailing asterisk...
+    # Find the prediction for E38.  Look in the summary section (that's what 
+    # the leading spaces are for), because the first section sometimes has a 
+    # trailing asterisk...
     grep '^   GLU  38 A' |
-    # Report it to stdout, where it will be captured in `PKA`
+    # Report it to stdout, where it will be captured in `PKA_MODEL`
     awk '{ print $4 }'
-)
+) 2>&1
 PKA_OFFSET=$(python -c "print abs($PKA_MODEL - $PKA_WT)")
 
 # Clean up all the output files that are spewed by PROPKA.
-rm propka_input_*.{pka,propka_input}
+rm -f propka_input_*.{pka,propka_input}
 
-echo "pKa (E38) ${PKA_MODEL}"
-echo "pKa Offset (E38) ${PKA_OFFSET}"
+echo "EXTRA_METRIC pKa (E38) ${PKA_MODEL}"
+echo "EXTRA_METRIC pKa Offset (E38) ${PKA_OFFSET}"
