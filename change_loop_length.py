@@ -266,7 +266,6 @@ class PdbFixer(Fixer):
             return fixed_lines
 
 
-
     def fix(self, src, dest, delta):
         # Read the original file.
 
@@ -428,6 +427,7 @@ class CopyUnchanged(Fixer):
     def fix(self, src, dest, delta):
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(src, dest)
+        shutil.copymode(src, dest)
 
 
 

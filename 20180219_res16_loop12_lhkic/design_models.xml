@@ -1,6 +1,6 @@
 <ROSETTASCRIPTS>
 
-  <xi:include href="shared_defs.xml"/>
+  {% include "shared_defs.xml" %}
 
   <RESIDUE_SELECTORS>
     <Index name="turn" resnums="200-201"/>
