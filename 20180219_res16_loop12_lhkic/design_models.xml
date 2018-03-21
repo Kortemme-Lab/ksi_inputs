@@ -17,7 +17,7 @@
   <MOVERS>
     <AtomTree name="foldtree" fold_tree_file="{{ w.find_path('foldtree') }}"/>
     <AtomTree name="unfoldtree" simple_ft="yes"/>
-    <AddChainBreak name="break_loop" resnum="40" change_foldtree="no"/>
+    <AddChainBreak name="break_loop" resnum="39" change_foldtree="no"/>
     <AddChainBreak name="break_turn" resnum="200" change_foldtree="no"/>
     <FastDesign name="fastdesign"
         task_operations="resfile,layer,abego,ex,aro,curr"
