@@ -8,6 +8,7 @@
       <Reweight scoretype="angle_constraint" weight="1.0"/>
       <Reweight scoretype="dihedral_constraint" weight="1.0"/>
       <Reweight scoretype="res_type_constraint" weight="1.0"/>
+      <Reweight scoretype="chainbreak" weight="100.0"/>
     </ScoreFunction>
   </SCOREFXNS>
 
