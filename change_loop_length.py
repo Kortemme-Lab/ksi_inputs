@@ -128,6 +128,8 @@ class Fixer:
         with mkdir_and_open(dest) as file:
             file.writelines(fixed_lines)
 
+        shutil.copymode(src, dest)
+
     def fix_line(self, delta, line):
         """
         Given a line from the original file, return the line (or lines) that 
