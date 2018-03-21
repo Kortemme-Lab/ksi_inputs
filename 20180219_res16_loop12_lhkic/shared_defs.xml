@@ -27,5 +27,5 @@
   <MOVERS>
     <FavorNativeResidue name="nativebonus" bonus="1.5"/>
     <ConstraintSetMover name="cst" cst_fa_file="%%cst_file%%"/>
-    <WriteFiltersToPose name="writer" prefix="EXTRA_SCORE_"/>
+    <WriteFiltersToPose name="writer" prefix="EXTRA_METRIC "/>
   </MOVERS>
