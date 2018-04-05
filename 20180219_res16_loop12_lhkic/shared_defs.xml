@@ -1,5 +1,3 @@
-  {% include "filters.xml" %}
-
   <SCOREFXNS>
     <ScoreFunction name="scorefxn" weights="{{ w.scorefxn_path }}"/>
     <ScoreFunction name="scorefxn_cst" weights="{{ w.scorefxn_path }}">
@@ -23,6 +21,8 @@
     <LimitAromaChi2 name="aro" include_trp="yes"/>
     <IncludeCurrent name="curr"/>
   </TASKOPERATIONS>
+
+  {% include "filters.xml" %}
 
   <MOVERS>
     <FavorNativeResidue name="nativebonus" />

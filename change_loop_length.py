@@ -160,10 +160,16 @@ class PatternFixer(Fixer):
     numbers to update.
     """
     patterns = []
+    skip = ['[Uu]naffected by loop length']
     keep_alignment = True
     keep_one_space = False
 
     def fix_line(self, delta, line):
+        # If a line contains any of the "skip" patterns, return in unchanged.
+        for pattern in self.skip:
+            if re.search(pattern, line):
+                return line
+            
         for pattern in self.patterns:
             # Iterate from right-to-left so our indexing doesn't get messed up 
             # as we update the line.

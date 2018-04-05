@@ -71,6 +71,12 @@
     from_other_chains="true"
     from_same_chain="true"
   />
+  <BuriedUnsatHbonds
+    name="Buried Unsatisfied H-Bonds [-]"
+    scorefxn="scorefxn"
+    print_out_info_to_pdb="true"
+    task_operations="resfile"
+  />
   <OversaturatedHbondAcceptorFilter
     name="Oversaturated H-bonds [-]"
     scorefxn="scorefxn_cst"
@@ -88,14 +94,14 @@
   <Foldability
     name="Foldability (35-41)"
     tries="60"
-    start_res="35"
-    end_res="41"
+    start_res="35" {# Unaffected by loop length. #}
+    end_res="41"   {# Unaffected by loop length. #}
   />
   <Foldability
     name="Foldability (37-44)"
     tries="60"
-    start_res="37"
-    end_res="44"
+    start_res="37" {# Unaffected by loop length. #}
+    end_res="44"   {# Unaffected by loop length. #}
   />
   <FragmentScoreFilter
     name="Max 9-Residue Fragment RMSD (Cα) [-]"

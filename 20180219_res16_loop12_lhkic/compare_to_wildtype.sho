@@ -3,19 +3,42 @@
 model_path=$1; shift 2
 model_sele=$(basename ${model_path%.pdb.gz})
 model_name="design_${model_sele}"
-wt_path="$(dirname $(realpath $0))/wt_lig_dimer.pdb"
+wt_path="$(dirname $(realpath $0))/1qjg.pdb"
 wt_sele=$(basename ${wt_path%.pdb})
 
+# Find which atoms have buried unsatisfied H-bonds.
+buried_unsat_sele=$(python <<EOF
+import gzip
+buried_unsats = set()
+buried_unsat_header = '      Unsatisfied HEAVY polar atom at residue'
+with gzip.open('$model_path', 'rt') as file:
+    for line in file:
+        if line.startswith(buried_unsat_header):
+            tokens = line.split()
+            resi = int(tokens[6].strip(':'))
+            atom = tokens[8]
+            buried_unsats.add((resi, atom))
+
+buried_unsat_sele = ' or '.join(
+        '%d/%s' % (resi, atom)
+        for resi, atom in buried_unsats
+)
+print('$model_sele and (%s)' % buried_unsat_sele)
+EOF
+)
+
 pymol -qx $wt_path $model_path                                              \
+    -d "remove $wt_sele and not chain A+B"                                  \
     -d "create wildtype_surface, $wt_sele and chain a"                      \
     -d "create design_surface, $model_sele and chain a"                     \
+    -d "create buried_unsats, $buried_unsat_sele"                           \
     -d "dist restraint_dist, /$wt_sele//A/38/CB,  /$model_sele//A/38/CG"    \
     -d "dist restraint_dist, /$wt_sele//A/38/OD1, /$model_sele//A/38/OE1"   \
     -d "dist restraint_dist, /$wt_sele//A/38/OD2, /$model_sele//A/38/OE2"   \
     -d "select equ, resn equ"                                               \
-    -d "select loop, resi 26-51"                                            \
-    -d "select turn, resi 198-203"                                          \
-    -d "select resfile, resi 34-46+199-202"                                 \
+    -d "select loop, resi 26-50"                                            \
+    -d "select turn, resi 197-202"                                          \
+    -d "select resfile, resi 34-45+198-201"                                 \
     -d "select none"                                                        \
     -d "remove resn hoh"                                                    \
     -d "center resi 38"                                                     \
@@ -29,21 +52,23 @@ pymol -qx $wt_path $model_path                                              \
     -d "show labels"                                                        \
     -d "as surface, wildtype_surface"                                       \
     -d "as surface, design_surface"                                         \
+    -d "as spheres, buried_unsats"                                          \
     -d "disable restraint_dist"                                             \
     -d "disable wildtype_surface"                                           \
     -d "disable design_surface"                                             \
+    -d "disable buried_unsats"                                              \
     -d "set cartoon_rect_length, 0.9"                                       \
     -d "set cartoon_oval_length, 0.9"                                       \
     -d "set stick_radius, 0.2"                                              \
+    -d "set sphere_scale, 0.5"                                              \
     -d "set transparency, 0.5"                                              \
     -d "set_name $wt_sele, wildtype"                                        \
     -d "set_name $model_sele, $model_name"                                  \
     -d "alias ww, wt_vs_mut wildtype, $model_name"                          \
     -d "set_view (                                                          \
-       0.7193032503,   -0.1634693891,   -0.6751872301,                      \
-      -0.0617329106,   -0.9831143618,    0.1722556353,                      \
-      -0.6919452548,   -0.0822221041,   -0.7172508240,                      \
-       0.0000000000,    0.0000000000,  -81.1679763794,                      \
-      19.3717613220,   70.9658966064,   10.4694824219,                      \
-      63.9934539795,   98.3424987793,  -20.0000000000 )"                    \
-    "$@"
+     0.634188831,    0.123339400,    0.763275802,                           \
+     0.766353846,   -0.231132716,   -0.599397123,                           \
+     0.102488272,    0.965071619,   -0.241101757,                           \
+     0.000000000,    0.000000000,  -91.860466003,                           \
+     5.448054790,   66.469032288,  -24.259080887,                           \
+    57.082832336,  126.638099670,  -20.000000000 )"                         \
