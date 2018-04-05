@@ -508,7 +508,7 @@ def mkdir_and_open(path, mode='w'):
 if __name__ == '__main__':
     args = docopt.docopt(__doc__)
     path = Path(args['<path>'])
-    delta = Delta(40, args['<delta>'])
+    delta = Delta(39, args['<delta>'])
 
     if path.is_dir():
         shutil.rmtree(delta.fix_dir(path), ignore_errors=True)

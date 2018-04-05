@@ -24,14 +24,14 @@
     use_statistical_potential="true"
   />
   <TotalSasa
-    name="Total SASA (Å²) [-]"
+    name="Total SASA [-]"
     threshold="0"
     upper_threshold="1000000000000000"
     hydrophobic="0"
     polar="0"
   />
   <ExposedHydrophobics
-    name="Exposed Hydrophobic Residue SASA (Å²) [-]"
+    name="Exposed Hydrophobic Residue SASA [-]"
     sasa_cutoff="20"
     threshold="-1"
   />
@@ -84,7 +84,21 @@
     target_res="all_repacked"
     rms_threshold="100"
   />
-  <FragmentScoreFilter name="Max 9-Residue Fragment RMSD (Cα) [-]"
+  {% if w.focus_name != 'validate_designs' %}
+  <Foldability
+    name="Foldability (35-41)"
+    tries="60"
+    start_res="35"
+    end_res="41"
+  />
+  <Foldability
+    name="Foldability (37-44)"
+    tries="60"
+    start_res="37"
+    end_res="44"
+  />
+  <FragmentScoreFilter
+    name="Max 9-Residue Fragment RMSD (Cα) [-]"
     scoretype="FragmentCrmsd"
     sort_by="FragmentCrmsd"
     threshold="9999"
@@ -106,4 +120,5 @@
     fragment_size="9"
     vall_path="{{ w.rosetta_vall_path(test_run) }}"
   />
+  {% endif %}
 </FILTERS>
